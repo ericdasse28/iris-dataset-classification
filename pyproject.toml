@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "iris-dataset-classification"
+version = "0.1.0"
+description = "Trains a machine learning model to determine the species of an iris flower based on its measurements"
+authors = ["Eric Dasse <christ.gououi@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "iris_dataset_classification"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+scikit-learn = "^1.4.1.post1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+flake8 = "^7.0.0"
+isort = "^5.13.2"
+pylint = "^3.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
