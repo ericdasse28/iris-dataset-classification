@@ -37,7 +37,7 @@ def main():
     args = parser.parse_args()
 
     iris_data = prepare(args.filename)
-    iris_data.to_csv(args.destination_path)
+    iris_data.to_csv(args.destination_path, index=False)
 
 
 if __name__ == "__main__":
