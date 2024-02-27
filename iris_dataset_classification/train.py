@@ -26,7 +26,7 @@ def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--dataset")
-    parser.add_argument("model-path")
+    parser.add_argument("--model-path")
 
     args = parser.parse_args()
     train(args.dataset, args.model_path)
