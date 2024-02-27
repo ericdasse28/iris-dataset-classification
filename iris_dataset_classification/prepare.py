@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 import pandas as pd
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
 
@@ -28,16 +29,33 @@ def prepare(path_to_iris_data: Path) -> pd.DataFrame:
     return iris_data
 
 
+def split_into_train_and_test(iris_data):
+    X = iris_data.drop("species", axis=1).values
+    y = iris_data["species"].values
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.33, random_state=4
+    )
+    train_dataset = pd.concat([X_train, y_train], axis=0)
+    test_dataset = pd.concat([X_test, y_test], axis=0)
+    return train_dataset, test_dataset
+
+
 def main():
     """Main."""
 
     parser = argparse.ArgumentParser()
     parser.add_argument("filename")
-    parser.add_argument("-d", "--destination-path")
+    parser.add_argument("-d", "--destination-folder")
     args = parser.parse_args()
 
     iris_data = prepare(args.filename)
-    iris_data.to_csv(args.destination_path, index=False)
+    # Split into train and test dataset
+    train_dataset, test_dataset = split_into_train_and_test(iris_data)
+
+    destination_folder = Path(args.destination_folder)
+    train_dataset.to_csv(destination_folder / "train.csv", index=False)
+    test_dataset.to_csv(destination_folder / "test.csv", index=False)
 
 
 if __name__ == "__main__":
