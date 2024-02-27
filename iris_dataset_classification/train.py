@@ -25,7 +25,7 @@ def main():
     """Training main."""
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "dataset")
+    parser.add_argument("-d", "--dataset")
     parser.add_argument("model-path")
 
     args = parser.parse_args()
