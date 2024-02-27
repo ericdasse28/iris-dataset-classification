@@ -30,14 +30,10 @@ def prepare(path_to_iris_data: Path) -> pd.DataFrame:
 
 
 def split_into_train_and_test(iris_data):
-    X = iris_data.drop("species", axis=1).values
-    y = iris_data["species"].values
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.33, random_state=4
+    train_dataset, test_dataset = train_test_split(
+        iris_data, test_size=0.33, random_state=4
     )
-    train_dataset = pd.concat([X_train, y_train], axis=0)
-    test_dataset = pd.concat([X_test, y_test], axis=0)
     return train_dataset, test_dataset
 
 
